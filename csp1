@@ -1,0 +1,46 @@
+using System;
+using System.Threading;
+
+class Program
+{
+    static void Main()
+    {
+        Console.CursorVisible = false;
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine(DateTime.Now.ToString("HH:mm:ss"));
+            Thread.Sleep(1000);
+        }
+    }
+}
+using System;
+using System.Windows.Forms;
+
+public class ClockForm : Form
+{
+    private Label clockLabel;
+    private Timer clockTimer;
+
+    public ClockForm()
+    {
+        clockLabel = new Label { Dock = DockStyle.Fill, TextAlign = System.Drawing.ContentAlignment.MiddleCenter };
+        this.Controls.Add(clockLabel);
+        
+        clockTimer = new Timer { Interval = 1000 };
+        clockTimer.Tick += ClockTimer_Tick;
+        clockTimer.Start();
+    }
+
+    private void ClockTimer_Tick(object sender, EventArgs e)
+    {
+        clockLabel.Text = DateTime.Now.ToString("hh:mm:ss tt");
+    }
+
+    [STAThread]
+    static void Main()
+    {
+        Application.EnableVisualStyles();
+        Application.Run(new ClockForm());
+    }
+}
