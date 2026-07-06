@@ -1,1 +1,1 @@
-soluation
+soluations
