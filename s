@@ -1,1 +1,1 @@
-soluations
+soluations  d
